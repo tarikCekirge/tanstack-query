@@ -10,10 +10,12 @@ export default function EventDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
 
+
+
   const { mutate } = useMutation({
     mutationFn: deleteEvent,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['events'], exact: true })
+      queryClient.invalidateQueries({ queryKey: ['events'], refetchType: 'none' })
       navigate('/events');
     }
 
